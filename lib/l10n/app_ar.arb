@@ -1,7 +1,7 @@
 {
 "todo_list" : "قائمة المهام",
 "add_new_task" : "ادخل مهمة جديدة",
-"select_time" : "اختر الوقت",
+"select_date" : "اختر التاريخ",
 "language" : "اللغة",
 "english" : "انجليزي",
 "arabic" : "عربي",
@@ -16,5 +16,9 @@
 "description" : "الوصف",
 "this_is_title" : "العنوان",
 "task_details" : "تفاصيل المهمة",
-"add" : "اضف"
+"please_enter_task_title" : "من فضلك ادخل عنوان المهمة",
+"please_enter_task_description" : "من فضلك ادخل وصف المهمة",
+"add" : "اضف",
+"enter_task_title" : "ادخل عنوان المهمة",
+"enter_task_description" : "ادخل وصف المهمة"
 }

@@ -3,6 +3,7 @@ import 'package:todo_app/home/MyTheme.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../Settings/Settings.dart';
 import '../TaskList/TaskList.dart';
+import 'AddTaskBottomSheet.dart';
 
 class HomeScreen extends StatefulWidget{
   static const String routeName = 'Home-Screen';
@@ -68,10 +69,18 @@ class _HomeScreenState extends State<HomeScreen> {
               color: MyTheme.whiteColor
             )
           ),
-          onPressed: (){},
+          onPressed: (){
+            ShowAddTaskBottomSheet();
+          },
       child: Icon(Icons.add, size: 30,) ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
        body: tabs[selectedIndex],
     );
   }
+  void ShowAddTaskBottomSheet(){
+    showModalBottomSheet(
+        context: context,
+        builder: (context) => AddTaskBottomSheet());
+  }
+
 }

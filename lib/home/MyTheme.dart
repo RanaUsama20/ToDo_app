@@ -9,6 +9,9 @@ class MyTheme{
   static Color whiteColor = const Color(0xffFFFFFF);
   static Color redColor = const Color(0xffEC4B4B);
   static Color blackColor = const Color(0xff383838);
+  static Color darkBlueColor = const Color(0xff00001C);
+
+
 
  static ThemeData lightTheme = ThemeData(
      primaryColor: primaryColor,
@@ -33,7 +36,13 @@ class MyTheme{
             fontWeight: FontWeight.w400,
             fontSize: 20
         )
-    ),
+    ),bottomSheetTheme: BottomSheetThemeData(
+   shape: RoundedRectangleBorder(
+     borderRadius: BorderRadius.only(
+         topLeft: Radius.circular(15),
+         topRight: Radius.circular(15))
+   )
+ ),
      bottomNavigationBarTheme: BottomNavigationBarThemeData(
        backgroundColor: Colors.transparent,
        elevation: 0,
@@ -75,7 +84,6 @@ class MyTheme{
           fontSize: 20
         )
       ),
-
       bottomNavigationBarTheme: BottomNavigationBarThemeData(
           backgroundColor: Colors.transparent,
           elevation: 0,
@@ -91,6 +99,13 @@ class MyTheme{
       ),
       floatingActionButtonTheme: FloatingActionButtonThemeData(
           backgroundColor: primaryColor
-      )
-  );
+      ),
+      bottomSheetTheme: BottomSheetThemeData(
+  backgroundColor: darkBlueColor,
+  shape: RoundedRectangleBorder(
+  borderRadius: BorderRadius.only(
+  topLeft: Radius.circular(15),
+      topRight: Radius.circular(15))
+  )
+  ));
 }
