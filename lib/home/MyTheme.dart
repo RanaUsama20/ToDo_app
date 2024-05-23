@@ -21,7 +21,17 @@ class MyTheme{
         TextStyle(
           color: whiteColor,
           fontWeight: FontWeight.w700,
-          fontSize: 22
+          fontSize: 30
+        ),
+        titleMedium: TextStyle(
+          color: blackColor,
+          fontWeight: FontWeight.w700,
+          fontSize: 25,
+        ),
+        titleSmall: TextStyle(
+            color: primaryColor,
+            fontWeight: FontWeight.w400,
+            fontSize: 20
         )
     ),
      bottomNavigationBarTheme: BottomNavigationBarThemeData(
@@ -52,9 +62,20 @@ class MyTheme{
           TextStyle(
               color: blackColor,
               fontWeight: FontWeight.w700,
-              fontSize: 22
-          )
+              fontSize: 30
+          ),
+              titleMedium: TextStyle(
+                color: blackColor,
+                fontWeight: FontWeight.w700,
+                fontSize: 25,
       ),
+        titleSmall: TextStyle(
+          color: primaryColor,
+          fontWeight: FontWeight.w400,
+          fontSize: 20
+        )
+      ),
+
       bottomNavigationBarTheme: BottomNavigationBarThemeData(
           backgroundColor: Colors.transparent,
           elevation: 0,
@@ -62,7 +83,7 @@ class MyTheme{
               color: primaryColor
           ),
           unselectedIconTheme: IconThemeData(
-              color: whiteColor
+              color: greyColor
           ),
           showSelectedLabels: true,
           showUnselectedLabels: false
