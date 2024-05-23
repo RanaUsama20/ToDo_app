@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:todo_app/home/MyTheme.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../Settings/Settings.dart';
 import '../TaskList/TaskList.dart';
 
@@ -16,13 +16,27 @@ class _HomeScreenState extends State<HomeScreen> {
   List <Widget> tabs = [
     TaskList(), Settings()
   ];
+  bool isZero(int selectedIndex){
+    if(selectedIndex == 0) {
+      return true;
+    }
+    else {
+      return false;
+    }
+  }
+
 
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
     return Scaffold(
       appBar: AppBar(
-        title: Text('Todo List',
+        title:
+        Text( isZero(selectedIndex) ?
+            AppLocalizations.of(context)!.todo_list
+            :
+            AppLocalizations.of(context)!.settings
+            ,
             style: Theme.of(context).textTheme.titleLarge),
       ),
       bottomNavigationBar: BottomAppBar(
@@ -38,11 +52,11 @@ class _HomeScreenState extends State<HomeScreen> {
           },
           items: [
             BottomNavigationBarItem(
-              label: 'Task List',
+              label: AppLocalizations.of(context)!.list,
               icon: Icon(Icons.list)
             ),
             BottomNavigationBarItem(
-              label: 'Settings',
+              label: AppLocalizations.of(context)!.settings,
                 icon: Icon(Icons.settings)),
           ],
         ),
