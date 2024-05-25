@@ -3,6 +3,8 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
 import 'package:todo_app/Provider/AppConfigProvider.dart';
 import 'package:todo_app/home/MyTheme.dart';
+import 'package:intl/intl.dart';
+
 
 class AddTaskBottomSheet extends StatefulWidget{
   @override
@@ -87,9 +89,7 @@ class _AddTaskBottomSheetState extends State<AddTaskBottomSheet> {
              },
              child: Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: Text('${selectedDate.day}/'
-                          '${selectedDate.month}/'
-                          '${selectedDate.year}',
+                      child: Text( DateFormat('dd-MM-yyyy').format(selectedDate),
                         textAlign: TextAlign.center,
                         style: provider.isDarkMode()?
                         Theme.of(context).textTheme.titleMedium!.copyWith(

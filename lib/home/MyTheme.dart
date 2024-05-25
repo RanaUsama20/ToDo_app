@@ -6,6 +6,7 @@ class MyTheme{
   static Color backgroundDark = const Color(0xff060E1E);
   static Color limeColor = const Color(0xff61E757);
   static Color greyColor = const Color(0xff737272);
+  static Color darkGreyColor = const Color(0xff141922);
   static Color whiteColor = const Color(0xffFFFFFF);
   static Color redColor = const Color(0xffEC4B4B);
   static Color blackColor = const Color(0xff383838);
@@ -74,7 +75,7 @@ class MyTheme{
               fontSize: 30
           ),
               titleMedium: TextStyle(
-                color: blackColor,
+                color: whiteColor,
                 fontWeight: FontWeight.w700,
                 fontSize: 25,
       ),

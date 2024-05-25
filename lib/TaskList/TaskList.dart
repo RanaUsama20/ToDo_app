@@ -15,6 +15,11 @@ class TaskList extends StatelessWidget{
           },
           activeColor: MyTheme.primaryColor,
           dayProps: const EasyDayProps(
+            inactiveDayStyle: (DayStyle(
+              dayNumStyle: TextStyle(
+                color: Colors.grey
+              )
+            )),
             todayHighlightStyle: TodayHighlightStyle.withBackground,
             todayHighlightColor: Color(0xffE1ECC8),
           ),

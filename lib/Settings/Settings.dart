@@ -35,7 +35,7 @@ class _SettingsState extends State<Settings> {
             padding: const EdgeInsets.all(8),
             decoration: BoxDecoration(
                 color: provider.isDarkMode()?
-                MyTheme.blackColor :
+                MyTheme.darkGreyColor :
                 MyTheme.whiteColor,
                 border:  Border.all(
                     color: MyTheme.primaryColor,
@@ -78,7 +78,7 @@ class _SettingsState extends State<Settings> {
             padding: const EdgeInsets.all(8),
             decoration: BoxDecoration(
                 color: provider.isDarkMode()?
-                    MyTheme.blackColor :
+                    MyTheme.darkGreyColor :
                     MyTheme.whiteColor,
                 border : Border.all(
                    color: MyTheme.primaryColor,

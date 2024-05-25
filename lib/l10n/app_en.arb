@@ -17,6 +17,7 @@
 "this_is_title" : "This is title",
 "task_details" : "Task Details",
 "add" : "Add",
+"done" : "Done",
 "please_enter_task_title" : "Please Enter Task Title",
 "please_enter_task_description" : "Please Enter Task Description",
 "enter_task_title" : "Enter Task Title",

@@ -19,6 +19,7 @@
 "please_enter_task_title" : "من فضلك ادخل عنوان المهمة",
 "please_enter_task_description" : "من فضلك ادخل وصف المهمة",
 "add" : "اضف",
+"done" : "تم",
 "enter_task_title" : "ادخل عنوان المهمة",
 "enter_task_description" : "ادخل وصف المهمة"
 }
