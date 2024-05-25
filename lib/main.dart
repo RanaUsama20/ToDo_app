@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:todo_app/Provider/AppConfigProvider.dart';
+import 'package:todo_app/TaskList/EditTask.dart';
 import 'package:todo_app/home/MyTheme.dart';
 import 'home/HomeScreen.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -22,6 +23,7 @@ class MyApp extends StatelessWidget{
       initialRoute: HomeScreen.routeName,
       routes: {
         HomeScreen.routeName : (context) => HomeScreen(),
+        EditTask.routeName : (context) => EditTask(),
       },
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
