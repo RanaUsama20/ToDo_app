@@ -4,12 +4,11 @@ import 'package:provider/provider.dart';
 import 'package:todo_app/Provider/AppConfigProvider.dart';
 import 'package:todo_app/TaskList/EditTask.dart';
 import 'package:todo_app/home/MyTheme.dart';
+import 'package:todo_app/home/SplashScreen.dart';
 import 'firebase_options.dart';
 import 'home/HomeScreen.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:firebase_core/firebase_core.dart';
-
-
 
 void main()async{
   WidgetsFlutterBinding.ensureInitialized();
@@ -32,10 +31,11 @@ class MyApp extends StatelessWidget{
     return MaterialApp(
       title: 'ToDo App',
       debugShowCheckedModeBanner: false,
-      initialRoute: HomeScreen.routeName,
+      initialRoute: SplashScreen.routeName,
       routes: {
         HomeScreen.routeName : (context) => HomeScreen(),
         EditTask.routeName : (context) => EditTask(),
+        SplashScreen.routeName : (context) => SplashScreen(),
       },
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
