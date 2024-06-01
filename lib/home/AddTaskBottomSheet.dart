@@ -1,23 +1,33 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
+import 'package:todo_app/DataModel/TaskModel.dart';
+import 'package:todo_app/Firebase_Utils.dart';
 import 'package:todo_app/Provider/AppConfigProvider.dart';
 import 'package:todo_app/home/MyTheme.dart';
 import 'package:intl/intl.dart';
 
+import '../Provider/ListProvider.dart';
+
 
 class AddTaskBottomSheet extends StatefulWidget{
+
   @override
   State<AddTaskBottomSheet> createState() => _AddTaskBottomSheetState();
 }
 
 class _AddTaskBottomSheetState extends State<AddTaskBottomSheet> {
   DateTime selectedDate = DateTime.now();
+  String title = '';
+  String description = '';
   var formKey = GlobalKey<FormState>();
+  late ListProvider listProvider;
+
   @override
   Widget build(BuildContext context) {
     var provider = Provider.of<AppConfigProvider>(context);
-
+    listProvider = Provider.of(context);
     // TODO: implement build
     return Container(
       padding: EdgeInsets.all(18),
@@ -37,6 +47,9 @@ class _AddTaskBottomSheetState extends State<AddTaskBottomSheet> {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: TextFormField(
+                onChanged: (text){
+                  title = text;
+                },
                 validator: (text){
                   if(text == null || text.isEmpty){
                     return AppLocalizations.of(context)!.please_enter_task_title;
@@ -56,6 +69,9 @@ class _AddTaskBottomSheetState extends State<AddTaskBottomSheet> {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: TextFormField(
+                onChanged: (text){
+                  description = text;
+                },
                 validator: (text){
                   if(text == null || text.isEmpty){
                     return AppLocalizations.of(context)!.please_enter_task_description;
@@ -122,7 +138,7 @@ class _AddTaskBottomSheetState extends State<AddTaskBottomSheet> {
   void showCalender()async{
     var chosenDate = await showDatePicker(
         context: context,
-        initialDate: DateTime.now(),
+        initialDate: selectedDate,
         firstDate: DateTime.now(),
         lastDate: DateTime.now().add(Duration(days: 365)));
     if(chosenDate != null){
@@ -136,6 +152,16 @@ class _AddTaskBottomSheetState extends State<AddTaskBottomSheet> {
   }
 
   void addTask() {
+    Task task = Task(
+        title: title,
+        description: description,
+        dateTime: selectedDate);
    if(formKey.currentState?.validate() == true){
+     FireBaseUtils.addTaskToFireBase(task).timeout(Duration(
+       milliseconds: 500,), onTimeout: (){
+       print('todo added successfully');
+       listProvider.getAllTasksFromFireStore();
+       Navigator.pop(context);
+     });
   }}
 }
