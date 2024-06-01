@@ -1,3 +1,4 @@
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -5,6 +6,7 @@ import 'package:todo_app/Provider/AppConfigProvider.dart';
 import 'package:todo_app/TaskList/EditTask.dart';
 import 'package:todo_app/home/MyTheme.dart';
 import 'package:todo_app/home/SplashScreen.dart';
+import 'Provider/ListProvider.dart';
 import 'firebase_options.dart';
 import 'home/HomeScreen.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -18,9 +20,19 @@ void main()async{
   await FirebaseFirestore.instance.disableNetwork();
   FirebaseFirestore.instance.settings =
       const Settings(cacheSizeBytes: Settings.CACHE_SIZE_UNLIMITED);
-  runApp(ChangeNotifierProvider(
-    create: (context) => AppConfigProvider(),
-      child: MyApp()));
+  runApp(
+    MultiProvider(
+        providers: [
+          ChangeNotifierProvider(
+              create: (context) => AppConfigProvider(),
+          ),
+          ChangeNotifierProvider(
+              create: (context) => ListProvider()
+          )
+        ],
+        child: MyApp(),
+  )
+      );
 }
 
 class MyApp extends StatelessWidget{

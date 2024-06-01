@@ -1,23 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:todo_app/Firebase_Utils.dart';
 import 'package:todo_app/Provider/AppConfigProvider.dart';
+import 'package:todo_app/Provider/ListProvider.dart';
 import 'package:todo_app/TaskList/EditTask.dart';
 import 'package:todo_app/home/MyTheme.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 
+import '../DataModel/TaskModel.dart';
+
 
 class TaskWidget extends StatefulWidget{
+  Task task;
+  TaskWidget({required this.task});
   @override
   State<TaskWidget> createState() => _TaskWidgetState();
 }
 
 class _TaskWidgetState extends State<TaskWidget> {
-  bool isDone = false;
 
   @override
   Widget build(BuildContext context) {
     var provider = Provider.of<AppConfigProvider>(context);
+    var listProvider = Provider.of<ListProvider>(context);
     // TODO: implement build
     return Container(
       margin: EdgeInsets.all(18),
@@ -29,7 +35,11 @@ class _TaskWidgetState extends State<TaskWidget> {
             SlidableAction(
               borderRadius: BorderRadius.circular(15),
               onPressed: (context){
-
+                 FireBaseUtils.deleteTaskFromFireStore(widget.task).timeout(
+                   Duration(milliseconds: 500,),onTimeout: (){
+                     print('todo deleted successfully');
+                 });
+                 listProvider.getAllTasksFromFireStore();
               },
               backgroundColor: MyTheme.redColor,
               foregroundColor: MyTheme.whiteColor,
@@ -54,7 +64,7 @@ class _TaskWidgetState extends State<TaskWidget> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Container(
-                  color:  isDone?
+                  color: widget.task.isDone?
                       MyTheme.limeColor :
                       MyTheme.primaryColor,
                   height: 80,
@@ -67,9 +77,9 @@ class _TaskWidgetState extends State<TaskWidget> {
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Text(
-                      AppLocalizations.of(context)!.task_title,
+                      widget.task.title??'',
                       style: Theme.of(context).textTheme.titleMedium!.copyWith(
-                        color: isDone?
+                        color: widget.task.isDone?
                         MyTheme.limeColor
                           :
                         MyTheme.primaryColor
@@ -78,7 +88,7 @@ class _TaskWidgetState extends State<TaskWidget> {
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Text(
-                        AppLocalizations.of(context)!.task_details,
+                        widget.task.description??'',
                       style: Theme.of(context).textTheme.titleSmall!.copyWith(
                           color: provider.isDarkMode()?
                           MyTheme.whiteColor :
@@ -88,12 +98,12 @@ class _TaskWidgetState extends State<TaskWidget> {
                 )),
                 InkWell(
                   onTap: (){
-                    isDone = true;
+                    widget.task.isDone = true;
                     setState(() {
 
                     });
                   },
-                  child: isDone?
+                  child: widget.task.isDone?
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Text('${AppLocalizations.of(context)!.done}!',
@@ -125,11 +135,4 @@ class _TaskWidgetState extends State<TaskWidget> {
       ),
     );
   }
-}
-
-class taskModel{
-  String title;
-  String description;
-  taskModel({required this.title,required this.description});
-
 }
