@@ -23,8 +23,9 @@ class _TaskListState extends State<TaskList> {
     return Column(
       children: [
         EasyDateTimeLine(
-          initialDate: DateTime.now(),
+          initialDate: listProvider.selectedDate,
           onDateChange: (selectedDate) {
+            listProvider.changeDate(selectedDate);
           },
           activeColor: MyTheme.primaryColor,
           dayProps: const EasyDayProps(
